@@ -11,9 +11,6 @@ import com.example.mytodo.ui.task.HomeViewModel
 import com.example.mytodo.ui.task.NewTaskViewModel
 import com.example.mytodo.ui.task.TaskInformationViewModel
 
-/**
- * Provides Factory to create instance of ViewModel for the entire Inventory app
- */
 object AppViewModelProvider {
     val Factory = viewModelFactory {
         // Initializer for ItemEditViewModel
@@ -43,9 +40,5 @@ object AppViewModelProvider {
     }
 }
 
-/**
- * Extension function to queries for [Application] object and returns an instance of
- * [InventoryApplication].
- */
 fun CreationExtras.myToDoApplication(): MyToDoApplication =
     (this[AndroidViewModelFactory.APPLICATION_KEY] as MyToDoApplication)

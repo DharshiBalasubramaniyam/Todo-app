@@ -85,8 +85,9 @@ fun HomeScreen(
                 }
             },
             onFilterSelected = {
-                viewModel.updateFilterKey(it)
+                viewModel.onFilterKeyChanged(it)
             },
+            activeFilterKey = viewModel.filterKey,
             modifier = modifier
                 .padding(innerPadding)
                 .fillMaxSize()
@@ -99,6 +100,7 @@ private fun HomeBody(
     tasksList: List<Task>,
     onTaskClick: (Int) -> Unit,
     onFilterSelected: (String) -> Unit,
+    activeFilterKey: String,
     onCheckChange: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -114,7 +116,8 @@ private fun HomeBody(
             )
         } else {
             TasksFilter(
-                onFilterSelected = onFilterSelected
+                onFilterSelected = onFilterSelected,
+                activeFilterKey = activeFilterKey,
             )
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_medium)))
             MyToDoTasksList(

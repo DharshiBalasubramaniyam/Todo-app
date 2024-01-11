@@ -1,7 +1,9 @@
 package com.example.mytodo.ui.task
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,22 +16,27 @@ import kotlinx.coroutines.flow.stateIn
 
 class HomeViewModel(private val taskRepository: TasksRepository) : ViewModel() {
 
-    private var filterKey by mutableStateOf("")
+    var filterKey by mutableStateOf("")
 
-    var homeUiState: StateFlow<HomeUiState> =
-        taskRepository.getAllTasksStream(filterKey).map { HomeUiState(it) }
+    var homeUiState: StateFlow<HomeUiState> by mutableStateOf(filterTasks())
+
+    private fun filterTasks(): StateFlow<HomeUiState> {
+        return taskRepository.getAllTasksStream(filterKey).map { HomeUiState(it) }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
                 initialValue = HomeUiState()
             )
+    }
+
+    fun onFilterKeyChanged(newFilterKey: String) {
+        filterKey = newFilterKey
+        homeUiState = filterTasks()
+        // Log.d("filter", "onFilterKeyChanged: ${homeUiState.value}")
+    }
 
     suspend fun updateTaskStatus(id: Int) {
         taskRepository.updateTaskStatus(id)
-    }
-
-    fun updateFilterKey(newFilterKey: String) {
-        filterKey = newFilterKey
     }
 
     companion object {
@@ -37,4 +44,6 @@ class HomeViewModel(private val taskRepository: TasksRepository) : ViewModel() {
     }
 }
 
-data class HomeUiState(val tasksList: List<Task> = listOf())
+data class HomeUiState(
+    var tasksList: List<Task> = listOf(),
+)
