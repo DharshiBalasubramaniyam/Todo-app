@@ -14,19 +14,21 @@
  * limitations under the License.
  */
 
-package com.example.mytodo.data
+package com.example.mytodo
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import android.app.Application
+import com.example.mytodo.modals.MyToDoAppContainer
+import com.example.mytodo.modals.MyToDoAppDataContainer
 
-/**
- * Entity data class represents a single row in the database.
- */
-@Entity(tableName = "items")
-data class Item(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    val name: String,
-    val price: Double,
-    val quantity: Int
-)
+class MyToDoApplication : Application() {
+
+    /**
+     * AppContainer instance used by the rest of classes to obtain dependencies
+     */
+    lateinit var container: MyToDoAppContainer
+
+    override fun onCreate() {
+        super.onCreate()
+        container = MyToDoAppDataContainer(this)
+    }
+}
