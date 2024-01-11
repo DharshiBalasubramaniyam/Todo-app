@@ -66,7 +66,6 @@ fun HomeScreen(
             FloatingActionButton(
                 onClick = navigateToNewTask,
                 shape = MaterialTheme.shapes.medium,
-                containerColor = MaterialTheme.colorScheme.surfaceVariant,
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
             ) {
                 Icon(
