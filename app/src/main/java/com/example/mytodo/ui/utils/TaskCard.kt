@@ -1,6 +1,7 @@
 package com.example.mytodo.ui.utils
 
 import android.icu.lang.UCharacter
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,8 +23,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.mytodo.R
 import com.example.mytodo.modals.Task
+import com.example.mytodo.ui.theme.Shapes
 
 @Composable
 fun MyToDoTask(
@@ -59,20 +62,32 @@ fun MyToDoTask(
             ){
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier.height(47.dp)
                 ) {
-                    Text(
-                        text = UCharacter.toUpperCase(task.title),
-                        style = MaterialTheme.typography.titleMedium,
-                    )
-                    Spacer(Modifier.weight(1f))
-
-                    Button(
-                        onClick = {  },
-                        shape = MaterialTheme.shapes.large,
+                    Column(
+                        modifier = Modifier
+                            .width(210.dp)
                     ) {
                         Text(
+                            text = UCharacter.toUpperCase(task.title),
+                            style = MaterialTheme.typography.titleMedium,
+                        )
+                    }
+                    Spacer(Modifier.weight(1f))
+                    Column(
+                        modifier = Modifier
+                            .background(
+                                color = MaterialTheme.colorScheme.primary,
+                                shape = Shapes.large
+                            )
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .padding(7.dp),
                             text = task.category,
+                            color = MaterialTheme.colorScheme.primaryContainer,
+                            fontSize = 10.sp,
                         )
                     }
 
