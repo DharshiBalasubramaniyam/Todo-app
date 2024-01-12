@@ -107,6 +107,10 @@ private fun HomeBody(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
+        TasksFilter(
+            onFilterSelected = onFilterSelected,
+            activeFilterKey = activeFilterKey,
+        )
         if (tasksList.isEmpty()) {
             Text(
                 text = stringResource(R.string.no_item_description),
@@ -114,10 +118,6 @@ private fun HomeBody(
                 style = MaterialTheme.typography.titleLarge
             )
         } else {
-            TasksFilter(
-                onFilterSelected = onFilterSelected,
-                activeFilterKey = activeFilterKey,
-            )
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_medium)))
             MyToDoTasksList(
                 tasksList = tasksList,
