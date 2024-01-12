@@ -41,7 +41,7 @@ fun TasksFilter(
                     onClick = {
                         onFilterSelected(option.value)
                     },
-                    shape = MaterialTheme.shapes.large,
+                    shape = MaterialTheme.shapes.small,
                     modifier = Modifier.padding(end = dimensionResource(id = R.dimen.padding_medium))
                 ) {
                     Text(
@@ -53,7 +53,7 @@ fun TasksFilter(
                     onClick = {
                         onFilterSelected(option.value)
                     },
-                    shape = MaterialTheme.shapes.large,
+                    shape = MaterialTheme.shapes.small,
                     modifier = Modifier.padding(end = dimensionResource(id = R.dimen.padding_medium))
                 ) {
                     Text(
