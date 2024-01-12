@@ -3,7 +3,7 @@ package com.example.mytodo.modals
 import kotlinx.coroutines.flow.Flow
 
 interface TasksRepository {
-    fun getAllTasksStream(filterKey: String): Flow<List<Task>>
+    fun getAllTasksStream(filterKey: String, searchKey: String): Flow<List<Task>>
 
     fun getTaskStream(id: Int): Flow<Task?>
 

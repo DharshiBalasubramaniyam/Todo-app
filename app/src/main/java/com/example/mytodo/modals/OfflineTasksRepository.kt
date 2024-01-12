@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 
 class OfflineTasksRepository(private val taskDao: TaskDao) : TasksRepository {
 
-    override fun getAllTasksStream(filterKey: String): Flow<List<Task>> = taskDao.getAllTasks(filterKey)
+    override fun getAllTasksStream(filterKey: String, searchKey: String): Flow<List<Task>> = taskDao.getAllTasks(filterKey, searchKey)
 
     override fun getTaskStream(id: Int): Flow<Task?> = taskDao.getTask(id)
 

@@ -18,10 +18,12 @@ class HomeViewModel(private val taskRepository: TasksRepository) : ViewModel() {
 
     var filterKey by mutableStateOf("")
 
+    var searchKey by mutableStateOf("")
+
     var homeUiState: StateFlow<HomeUiState> by mutableStateOf(filterTasks())
 
     private fun filterTasks(): StateFlow<HomeUiState> {
-        return taskRepository.getAllTasksStream(filterKey).map { HomeUiState(it) }
+        return taskRepository.getAllTasksStream(filterKey, searchKey).map { HomeUiState(it) }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
@@ -32,7 +34,11 @@ class HomeViewModel(private val taskRepository: TasksRepository) : ViewModel() {
     fun onFilterKeyChanged(newFilterKey: String) {
         filterKey = newFilterKey
         homeUiState = filterTasks()
-        // Log.d("filter", "onFilterKeyChanged: ${homeUiState.value}")
+    }
+
+    fun onSearchKeyChanged(newSearchKey: String) {
+        searchKey = newSearchKey
+        homeUiState = filterTasks()
     }
 
     suspend fun updateTaskStatus(id: Int) {

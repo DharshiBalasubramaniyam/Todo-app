@@ -43,7 +43,9 @@ fun NewTaskScreen(
             MyToDoTopAppBar(
                 title = stringResource(NewTaskDestination.titleRes),
                 canNavigateBack = canNavigateBack,
-                navigateUp = onNavigateUp
+                canHaveSearch = false,
+                navigateUp = onNavigateUp,
+                onSearchValueChanged = {}
             )
         }
     ) { innerPadding ->

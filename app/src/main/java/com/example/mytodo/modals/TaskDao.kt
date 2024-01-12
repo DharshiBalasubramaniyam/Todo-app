@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
-    @Query("SELECT * from tasks WHERE category LIKE '%' || :filterKey || '%' ORDER BY isCompleted ASC, id ASC")
-    fun getAllTasks(filterKey: String): Flow<List<Task>>
+    @Query("SELECT * from tasks WHERE category LIKE '%' || :filterKey || '%' AND title LIKE '%' || :searchKey || '%' ORDER BY isCompleted ASC, id ASC")
+    fun getAllTasks(filterKey: String, searchKey: String): Flow<List<Task>>
 
     @Query("SELECT * from tasks WHERE id = :id")
     fun getTask(id: Int): Flow<Task>

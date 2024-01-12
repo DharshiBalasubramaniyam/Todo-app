@@ -50,7 +50,9 @@ fun TaskInformationScreen(
             MyToDoTopAppBar(
                 title = stringResource(TaskInformationDestination.titleRes),
                 canNavigateBack = canNavigateBack,
-                navigateUp = navigateBack
+                canHaveSearch = false,
+                navigateUp = navigateBack,
+                onSearchValueChanged = {}
             )
         }
     ) { innerPadding ->

@@ -33,6 +33,7 @@ import com.example.mytodo.ui.navigation.NavigationDestination
 import kotlinx.coroutines.launch
 import com.example.mytodo.ui.utils.MyToDoTasksList
 import com.example.mytodo.ui.utils.MyToDoTopAppBar
+import com.example.mytodo.ui.utils.SearchInput
 import com.example.mytodo.ui.utils.TasksFilter
 
 object HomeDestination : NavigationDestination {
@@ -59,7 +60,11 @@ fun HomeScreen(
             MyToDoTopAppBar(
                 title = stringResource(HomeDestination.titleRes),
                 canNavigateBack = false,
-                scrollBehavior = scrollBehavior
+                canHaveSearch = true,
+                scrollBehavior = scrollBehavior,
+                onSearchValueChanged = {
+                    viewModel.onSearchKeyChanged(it)
+                }
             )
         },
         floatingActionButton = {
