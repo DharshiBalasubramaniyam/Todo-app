@@ -13,19 +13,12 @@ import com.example.mytodo.ui.task.TaskInformationViewModel
 
 object AppViewModelProvider {
     val Factory = viewModelFactory {
-        // Initializer for ItemEditViewModel
-//        initializer {
-//            ItemEditViewModel(
-//                this.createSavedStateHandle(),
-//                inventoryApplication().container.itemsRepository
-//            )
-//        }
-        // Initializer for ItemEntryViewModel
+        // Initializer for NewTaskViewModel
         initializer {
             NewTaskViewModel(myToDoApplication().container.tasksRepository)
         }
 
-        // Initializer for ItemDetailsViewModel
+        // Initializer for TaskInformationViewModel
         initializer {
             TaskInformationViewModel(
                 this.createSavedStateHandle(),
